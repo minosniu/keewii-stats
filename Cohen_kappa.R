@@ -1,17 +1,23 @@
-# usage: source('Cohen_kappa.R',print.eval=TRUE)
-# This function reads 
+# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Cohen_kappa.R',print.eval=TRUE)
 
-# Basic settings
-setwd("c:\\Code\\emg_R_analysis"); library(fmsb) # Cohen's kappa
-# Shouldn't be changed 
-rm(list = ls()); num_trials<-25; Vowel<-c('ɑ', 'ɔ', 'ɛ', 'i', 'u');Encoding(Vowel)<-'UTF-8'
+# This function reads txt files in each folders of the subjects,
+# and read true answers and subject's answer.
+# Then, it runs Cohen's Kappa agreement for intra-rater agreement.
+# Four results will be shown: Cohen_BC, Cohen_BP, Cohen_FC, Cohen_FP.
+# First Capital: B-brachioradialis, F-Flexor Pollicis Brevis
+# Second Capital: C- Cartesian, P- Polar Coordinate
+rm(list = ls());
+# Basic settings: Can be changed
+cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
+listener<- "kw" ;  
+# Shouldn't be changed
+library(fmsb) # Cohen's kappa
+num_trials<-25; Vowel<-c('ɑ', 'ɔ', 'ɛ', 'i', 'u');Encoding(Vowel)<-'UTF-8'
 len_vowel<-length(Vowel)
 Cohen_BC<-matrix(0, nrow = len_vowel, ncol = len_vowel);
 Cohen_BP<-Cohen_BC; Cohen_FC<-Cohen_BC; Cohen_FP<-Cohen_BC 
 # colnames(Cohen_matrix)<-Vowel; rownames(Cohen_matrix)<-Vowel;
-## Can be changed
-cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
-listener<- "kw" ; log_filename<-paste(c('test-log-',listener,'.txt'),collapse='')
+log_filename<-paste(c('test-log-',listener,'.txt'),collapse='')
 #answer_col<-3 # col1:path, col2: right answer, col3: answer
 # list filenames of brac & fpb, odd index is cartesian, even index is polar coordinate
 dirs_brac<-grep("[C]+$",list.dirs(cur_path,recursive=FALSE),value=TRUE)
