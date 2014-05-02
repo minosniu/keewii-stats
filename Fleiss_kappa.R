@@ -30,11 +30,12 @@ N<-num_subject*num_trials #total instances
 Fleiss_BC<-matrix(0, nrow = N, ncol = len_vowel);
 Fleiss_BP<-Fleiss_BC; Fleiss_FC<-Fleiss_BC; Fleiss_FP<-Fleiss_BC 
 
-temp_brac_cart<-matrix(numeric(0), 0,2) 
-temp_brac_polar<-matrix(numeric(0), 0,2) 
-temp_fpb_cart<-matrix(numeric(0), 0,2) 
-temp_fpb_polar<-matrix(numeric(0), 0,2)   
+ 
 for (m in 1:length(list_rater)){ # rater loop
+  temp_brac_cart<-matrix(numeric(0), 0,2) 
+  temp_brac_polar<-matrix(numeric(0), 0,2) 
+  temp_fpb_cart<-matrix(numeric(0), 0,2) 
+  temp_fpb_polar<-matrix(numeric(0), 0,2)  
   log_filename<-paste(c('test-log-',list_rater[m],'.txt'),collapse='')
   filenames_brac_cart<-list.files(dirs_brac_cart,log_filename, recursive=TRUE, full.names=TRUE)
   filenames_brac_polar<-list.files(dirs_brac_polar,log_filename, recursive=TRUE, full.names=TRUE)
