@@ -1,4 +1,4 @@
-# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Fleiss_kappa.R',print.eval=TRUE)
+# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Fleiss_new.R',print.eval=TRUE)
 
 # This function reads txt files in each folders of the subjects,
 # and read subject's answer to check if raters agree with each other.
@@ -14,7 +14,7 @@ cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
 list_rater<-t(read.table(paste(c(cur_path,"\\rater-info.txt"), collapse=""), header=FALSE))
 # Shouldn't be changed
 library(irr) # fleiss' kappa
-num_trials<-25; Vowel<-c('ɑ', 'ɔ', 'ɛ', 'i', 'u');Encoding(Vowel)<-'UTF-8'
+num_trials<-25; Vowel<-c('É', 'É', 'É', 'i', 'u');Encoding(Vowel)<-'UTF-8'
 len_vowel<-length(Vowel)
 
 # list filenames of brac & fpb, odd index is cartesian, even index is polar coordinate
@@ -27,10 +27,10 @@ dirs_fpb_polar<-grep("[r]+$",list.dirs(dirs_fpb,recursive=FALSE),value=TRUE)
 
 num_subject<-length(dirs_brac_cart) # number of subject
 N<-num_subject*num_trials #total instances
-Fleiss_BC<-matrix(0, nrow = N, ncol = len_vowel);
+Fleiss_BC<-matrix(, nrow = N, ncol = 0);
 Fleiss_BP<-Fleiss_BC; Fleiss_FC<-Fleiss_BC; Fleiss_FP<-Fleiss_BC 
 
- 
+
 for (m in 1:length(list_rater)){ # rater loop
   temp_brac_cart<-matrix(numeric(0), 0,2) 
   temp_brac_polar<-matrix(numeric(0), 0,2) 
@@ -54,24 +54,20 @@ for (m in 1:length(list_rater)){ # rater loop
     temp<-read.table(filenames_fpb_polar[a],header=FALSE,nrows=num_trials,encoding='UTF-8')[,2:3]
     temp_fpb_polar<-rbind(temp_fpb_polar,temp)
   }
-  for (n in 1:N){
-    for (a in 1:len_vowel){
-      if (temp_brac_cart[n,2]==Vowel[a]){
-        Fleiss_BC[n,a]<-Fleiss_BC[n,a]+1
-      }
-      if (temp_brac_polar[n,2]==Vowel[a]){
-        Fleiss_BP[n,a]<-Fleiss_BP[n,a]+1
-      }
-      if (temp_fpb_cart[n,2]==Vowel[a]){
-        Fleiss_FC[n,a]<-Fleiss_FC[n,a]+1
-      }
-      if (temp_fpb_polar[n,2]==Vowel[a]){
-        Fleiss_FP[n,a]<-Fleiss_FP[n,a]+1
-      }   
-    }
-  }
+  Fleiss_BC<-cbind(Fleiss_BC,temp_brac_cart[,2])
+  Fleiss_BP<-cbind(Fleiss_BP,temp_brac_polar[,2])
+  Fleiss_FC<-cbind(Fleiss_FC,temp_fpb_cart[,2])
+  Fleiss_FP<-cbind(Fleiss_FP,temp_fpb_polar[,2])
 }
 kappam.fleiss(Fleiss_BC, exact = FALSE, detail = FALSE)
 kappam.fleiss(Fleiss_BP, exact = FALSE, detail = FALSE)
 kappam.fleiss(Fleiss_FC, exact = FALSE, detail = FALSE)
 kappam.fleiss(Fleiss_FP, exact = FALSE, detail = FALSE)
+
+rtr1 <- letters[c(4,2,2,5,2, 1,3,1,1,5, 1,1,2,1,2, 3,1,1,2,1, 5,2,2,1,1, 2,1,2,1,5)]
+rtr2 <- letters[c(4,2,3,5,2, 1,3,1,1,5, 4,2,2,4,2, 3,1,1,2,3, 5,4,2,1,4, 2,1,2,3,5)]
+rtr3 <- letters[c(4,2,3,5,2, 3,3,3,4,5, 4,4,2,4,4, 3,1,1,4,3, 5,4,4,4,4, 2,1,4,3,5)]
+rtr4 <- letters[c(4,5,3,5,4, 3,3,3,4,5, 4,4,3,4,4, 3,4,1,4,5, 5,4,5,4,4, 2,1,4,3,5)]
+rtr5 <- letters[c(4,5,3,5,4, 3,5,3,4,5, 4,4,3,4,4, 3,5,1,4,5, 5,4,5,4,4, 2,5,4,3,5)]
+rtr6 <- letters[c(4,5,5,5,4, 3,5,4,4,5, 4,4,3,4,5, 5,5,2,4,5, 5,4,5,4,5, 4,5,4,3,5)]
+ratings <- cbind(rtr1, rtr2, rtr3, rtr4, rtr5, rtr6)
