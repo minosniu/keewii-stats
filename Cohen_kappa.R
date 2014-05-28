@@ -9,7 +9,7 @@
 rm(list = ls());
 # Basic settings: Can be changed
 cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
-listener<- "minos" ;  
+listener<- "angela" ;  
 # Shouldn't be changed
 library(fmsb) # Cohen's kappa
 num_trials<-25;Vowel<-c('ɑ', 'ɛ', 'i', 'ɔ', 'u');Encoding(Vowel)<-'UTF-8'  

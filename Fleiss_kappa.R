@@ -1,4 +1,4 @@
-# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Fleiss_new.R',print.eval=TRUE)
+# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Fleiss_kappa.R',print.eval=TRUE)
 
 # This function reads txt files in each folders of the subjects,
 # and read subject's answer to check if raters agree with each other.
