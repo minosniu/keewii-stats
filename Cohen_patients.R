@@ -1,4 +1,4 @@
-# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Cohen_kappa.R',print.eval=TRUE)
+# usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Cohen_patients.R',print.eval=TRUE)
 
 # This function reads txt files in each folders of the subjects,
 # and read true answers and subject's answer.
@@ -8,11 +8,11 @@
 # Second Capital: C- Cartesian, P- Polar Coordinate
 rm(list = ls());
 # Basic settings: Can be changed
-cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Patients_temp"
-listener<- "kw" ;  
+cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Patients"
+listener<- "amber" ;  
 # Shouldn't be changed
 library(fmsb) # Cohen's kappa
-num_trials<-25; Vowel<-c('É', 'É', 'É', 'i', 'u');Encoding(Vowel)<-'UTF-8'
+num_trials<-25;Vowel<-c('ɑ', 'ɛ', 'i', 'ɔ', 'u');Encoding(Vowel)<-'UTF-8'  
 len_vowel<-length(Vowel)
 Cohen_BC<-matrix(0, nrow = len_vowel, ncol = len_vowel);
 Cohen_BP<-Cohen_BC; Cohen_FC<-Cohen_BC; Cohen_FP<-Cohen_BC 
@@ -34,13 +34,13 @@ for (a in 1:numfile){
   temp_brac_polar<-rbind(temp_brac_polar,temp)
 }
 #temp_brac_cart<-read.table(filenames_brac[3],header=FALSE,nrows=num_trials,encoding='UTF-8')[,2:3]
-N<-numfile*num_trials
+N<-numfile*num_trials #250
 for (k in 1:N)
   for (a in 1:len_vowel){
     for (b in 1:len_vowel){
       if (temp_brac_cart[k,1]==Vowel[b] & temp_brac_cart[k,2]==Vowel[a]){
         Cohen_BC[a,b]<-Cohen_BC[a,b]+1
-      }
+      } 
       if (temp_brac_polar[k,1]==Vowel[b] & temp_brac_polar[k,2]==Vowel[a]){
         Cohen_BP[a,b]<-Cohen_BP[a,b]+1
       }  

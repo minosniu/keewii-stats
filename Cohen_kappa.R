@@ -12,7 +12,7 @@ cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
 listener<- "minos" ;  
 # Shouldn't be changed
 library(fmsb) # Cohen's kappa
-num_trials<-25; Vowel<-c('ɑ', 'ɔ', 'ɛ', 'i', 'u');Encoding(Vowel)<-'UTF-8'
+num_trials<-25;Vowel<-c('ɑ', 'ɛ', 'i', 'ɔ', 'u');Encoding(Vowel)<-'UTF-8'  
 len_vowel<-length(Vowel)
 Cohen_BC<-matrix(0, nrow = len_vowel, ncol = len_vowel);
 Cohen_BP<-Cohen_BC; Cohen_FC<-Cohen_BC; Cohen_FP<-Cohen_BC 
