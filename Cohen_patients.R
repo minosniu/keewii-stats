@@ -1,21 +1,21 @@
 # usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Cohen_patients.R',print.eval=TRUE)
 
-# This function reads txt files in each folders of the subjects,
+# This function reads txt files in each folders of the patients,
 # and read true answers and subject's answer.
 # Then, it runs Cohen's Kappa agreement for intra-rater agreement.
 # Four results will be shown: Cohen_BC, Cohen_BP, Cohen_FC, Cohen_FP.
-# First Capital: B-brachioradialis, F-Flexor Pollicis Brevis
+# First Capital: B-brachioradialis
 # Second Capital: C- Cartesian, P- Polar Coordinate
+# You need to change the lisntener's name.
 rm(list = ls());
 # Basic settings: Can be changed
 cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Patients"
-listener<- "amber" ;  
+listener<- "minos" ;  
 # Shouldn't be changed
 library(fmsb) # Cohen's kappa
 num_trials<-25;Vowel<-c('ɑ', 'ɛ', 'i', 'ɔ', 'u');Encoding(Vowel)<-'UTF-8'  
 len_vowel<-length(Vowel)
-Cohen_BC<-matrix(0, nrow = len_vowel, ncol = len_vowel);
-Cohen_BP<-Cohen_BC; Cohen_FC<-Cohen_BC; Cohen_FP<-Cohen_BC 
+Cohen_BC<-matrix(0, nrow = len_vowel, ncol = len_vowel); Cohen_BP<-Cohen_BC;  
 # colnames(Cohen_matrix)<-Vowel; rownames(Cohen_matrix)<-Vowel;
 log_filename<-paste(c('test-log-',listener,'.txt'),collapse='')
 #answer_col<-3 # col1:path, col2: right answer, col3: answer

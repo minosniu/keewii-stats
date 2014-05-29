@@ -1,10 +1,10 @@
 # usage: setwd("c:\\Users\\Labuser\\Documents\\Github\\keewii-stats"); source('Fleiss_patients.R',print.eval=TRUE)
 
-# This function reads txt files in each folders of the subjects,
+# This function reads txt files in each folders of the patients,
 # and read subject's answer to check if raters agree with each other.
 # Then, it runs Fleiss's Kappa agreement for inter-rater agreement.
-# Four results will be shown: Fleiss_BC, Fleiss_BP, Fleiss_FC, Fleiss_FP.
-# First Capital: B-brachioradialis, F-Flexor Pollicis Brevis
+# Two results will be shown: Fleiss_BC, Fleiss_BP.
+# First Capital: B-brachioradialis
 # Second Capital: C- Cartesian, P- Polar Coordinate
 # Rater info: rater-info.txt in current path
 
