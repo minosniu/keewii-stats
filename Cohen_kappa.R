@@ -6,6 +6,7 @@
 # Four results will be shown: Cohen_BC, Cohen_BP, Cohen_FC, Cohen_FP.
 # First Capital: B-brachioradialis, F-Flexor Pollicis Brevis
 # Second Capital: C- Cartesian, P- Polar Coordinate
+# You need to change the lisntener's name.
 rm(list = ls());
 # Basic settings: Can be changed
 cur_path<-"C:\\Users\\Labuser\\Documents\\Github\\keewii-visual\\data\\Healthy"
